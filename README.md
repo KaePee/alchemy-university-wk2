@@ -27,5 +27,5 @@ There are a few files in utils:
 
 ## Conclusion
 - From the client side, take a name and find the index of the name on the gift list
-- Generate a proof and send to the server in addition to the name
-- Verify the proof of the name from the server and if it exists, a gift is presented.
+- Generate a Merkle proof and send to the server in addition to the name
+- Verify the Merkel proof of the name from the server and if it exists, a gift is presented.

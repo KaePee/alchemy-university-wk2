@@ -1,6 +1,7 @@
 const express = require('express');
 const verifyProof = require('../utils/verifyProof');
 const { prototype } = require('../utils/MerkleTree');
+const MerkleTree = require('../utils/MerkleTree');
 
 const port = 1225;
 
@@ -9,16 +10,14 @@ app.use(express.json());
 
 // TODO: hardcode a merkle root here representing the whole nice list
 // paste the hex string in here, without the 0x prefix
-const MERKLE_ROOT = '';
+const MERKLE_ROOT = 'ddd59a2ffccddd60ff47993312821cd57cf30f7f14fb82937ebe2c4dc78375aa';
 
 app.post('/gift', (req, res) => {
   // grab the parameters from the front-end here
   const {proof, name } = req.body;
 
   // TODO: prove that a name is in the list 
-  //root of merkle tree
-  const root = "ddd59a2ffccddd60ff47993312821cd57cf30f7f14fb82937ebe2c4dc78375aa"
-  const isInTheList = verifyProof(proof, name, root)
+  const isInTheList = verifyProof(proof, name, MERKLE_ROOT)
   if(isInTheList) {
     res.send("You got a toy robot!");
   }

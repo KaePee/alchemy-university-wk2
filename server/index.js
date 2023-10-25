@@ -1,5 +1,6 @@
 const express = require('express');
 const verifyProof = require('../utils/verifyProof');
+const { prototype } = require('../utils/MerkleTree');
 
 const port = 1225;
 
@@ -12,10 +13,12 @@ const MERKLE_ROOT = '';
 
 app.post('/gift', (req, res) => {
   // grab the parameters from the front-end here
-  const body = req.body;
+  const {proof, name } = req.body;
 
   // TODO: prove that a name is in the list 
-  const isInTheList = false;
+  //root of merkle tree
+  const root = "ddd59a2ffccddd60ff47993312821cd57cf30f7f14fb82937ebe2c4dc78375aa"
+  const isInTheList = verifyProof(proof, name, root)
   if(isInTheList) {
     res.send("You got a toy robot!");
   }
